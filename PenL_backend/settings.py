@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #third party packages
+    'corsheaders',
     'rest_framework',
     'rest_framework_swagger',
 ]
@@ -117,6 +118,8 @@ REST_FRAMEWORK = {
 
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
