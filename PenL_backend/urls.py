@@ -23,5 +23,6 @@ urlpatterns = [
     path('', schema_view),
     path('admin/', admin.site.urls),
     path('api-auth', include("rest_framework.urls")),
+    path('api/v1/', include("apps.game_room.api.urls")),
     path('docs/', schema_view)
 ]
