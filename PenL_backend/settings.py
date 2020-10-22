@@ -22,7 +22,7 @@ env = environ.Env(
 )
 env_file = os.path.join(BASE_DIR, ".env")
 # reading .env file
-environ.Env.read_env(env_file)
+environ.Env.read_env()
 
 
 # False if not in os.environ
@@ -154,5 +154,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
     DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600, sl_require=True
+        conn_max_age=600, ssl_require=True
     )
