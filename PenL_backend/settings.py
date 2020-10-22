@@ -22,7 +22,7 @@ env = environ.Env(
 )
 env_file = os.path.join(BASE_DIR, ".env")
 # reading .env file
-environ.Env.read_env()
+environ.Env.read_env(env_file)
 
 
 # False if not in os.environ
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

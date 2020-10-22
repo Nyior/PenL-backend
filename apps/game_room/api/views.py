@@ -8,7 +8,7 @@ from apps.game_room.api.serializers import (CustomUserSerializer,
                                             RoomDetailSerializer
                                             )
 from apps.core.utils import generate_unique_slug
-from apps.game_room.models import Room
+from apps.game_room.models import Room, CustomUser
 
 
 class CustomUserCreateAPIView(APIView):
@@ -50,7 +50,9 @@ class RoomCreateAPIView(APIView):
 
         if serializer.is_valid():
             room_slug = generate_unique_slug(request.data['room_name'])
-            serializer.save(slug=room_slug, host=request.user)
+            host = get_object_or_404(CustomUser, id=request.data['host_id'])
+
+            serializer.save(slug=room_slug, host=host)
 
             return Response(
                 {
