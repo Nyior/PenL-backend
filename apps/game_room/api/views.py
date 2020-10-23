@@ -8,6 +8,7 @@ from apps.game_room.api.serializers import (CustomUserSerializer,
                                             RoomDetailSerializer
                                             )
 from apps.core.utils import generate_unique_slug
+from apps.core.utils import generate_unique_invite_link
 from apps.game_room.models import Room, CustomUser
 
 
@@ -51,8 +52,8 @@ class RoomCreateAPIView(APIView):
         if serializer.is_valid():
             room_slug = generate_unique_slug(request.data['room_name'])
             host = get_object_or_404(CustomUser, id=request.data['host_id'])
-
-            serializer.save(slug=room_slug, host=host)
+            invite_link = generate_unique_invite_link(room_slug)
+            serializer.save(slug=room_slug, host=host, invite_link=invite_link)
 
             return Response(
                 {
@@ -72,7 +73,7 @@ class JoinRoomAPIView(APIView):
         """
 
         room = get_object_or_404(Room, slug=room_slug)
-        user = request.user
+        user = get_object_or_404(CustomUser, id=request.data['user_id'])
 
         room.players.add(user)
         room.save()

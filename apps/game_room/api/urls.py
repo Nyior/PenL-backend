@@ -13,7 +13,7 @@ urlpatterns = [
     path('room', RoomCreateAPIView.as_view(), name='new-room'),
 
     path(
-      "room/<slug:room_slug>/join/",
+      "room/<slug:room_slug>/join",
       JoinRoomAPIView.as_view(),
       name="join-room"
       ),
@@ -25,7 +25,7 @@ urlpatterns = [
         ),
 
     path(
-         "room/<slug:slug>/delete/",
+         "room/<slug:slug>/delete",
          RoomDeleteAPIView.as_view(),
          name="circle-delete"
          ),
