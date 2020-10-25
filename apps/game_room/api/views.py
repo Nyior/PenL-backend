@@ -11,6 +11,13 @@ from apps.core.utils import generate_unique_slug
 from apps.core.utils import generate_unique_invite_link
 from apps.game_room.models import Room, CustomUser
 
+import socketio
+
+async_mode = None
+
+sio = socketio.Server(async_mode=async_mode)
+thread = None
+
 
 class CustomUserCreateAPIView(APIView):
 
