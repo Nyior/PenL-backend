@@ -15,8 +15,24 @@ import socketio
 
 async_mode = None
 
-sio = socketio.Server(async_mode=async_mode)
+sio = socketio.Server(async_mode=async_mode, cors_allowed_origins='*')
 thread = None
+
+
+@sio.on('users')
+def dummy(sid):
+    print("received users event from client")
+
+
+@sio.event
+def connect(sid, environ):
+    print('i am connected to the client', sid)
+    sio.emit("success", {'message': 'sockets their fada'})
+
+
+@sio.event
+def disconnect(sid):
+    print('i am disconnect from the client', sid)
 
 
 class CustomUserCreateAPIView(APIView):
@@ -83,6 +99,17 @@ class JoinRoomAPIView(APIView):
         user = get_object_or_404(CustomUser, id=request.data['user_id'])
 
         room.players.add(user)
+
+        sio.emit(
+            "new_room_user",
+
+            {
+                'id': user.id,
+                'points': user.points,
+                'username': user.username
+            }
+        )
+
         room.save()
 
         serializer = self.serializer_class(room)
