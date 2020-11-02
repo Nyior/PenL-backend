@@ -17,28 +17,18 @@ import environ
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 env = environ.Env(
-    # set casting, default value
     DEBUG=(bool, False)
 )
 env_file = os.path.join(BASE_DIR, ".env")
-# reading .env file
-environ.Env.read_env(env_file)
 
+environ.Env.read_env()
 
-# False if not in os.environ
 DEBUG = env('DEBUG')
 
-# Raises django's ImproperlyConfigured exception
-# if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
-
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 ALLOWED_HOSTS = ['*']
 
-
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -90,9 +80,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'PenL_backend.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 if DEBUG:
     DATABASES = {
         'default': {
@@ -101,9 +88,6 @@ if DEBUG:
         }
     }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -139,8 +123,6 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -152,9 +134,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
