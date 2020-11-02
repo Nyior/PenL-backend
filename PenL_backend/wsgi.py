@@ -21,4 +21,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PenL_backend.settings')
 django_app = get_wsgi_application()
 application = socketio.WSGIApp(sio, django_app)
 
-eventlet.wsgi.server(eventlet.listen(('', 8000)), application)
+eventlet.wsgi.server(eventlet.listen(('', 8080)), application)
