@@ -28,7 +28,7 @@ environ.Env.read_env(env_file)
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
-# Raises django's ImproperlyConfigured exception 
+# Raises django's ImproperlyConfigured exception
 # if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
 
@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
 
     # developer apps
-    'apps.game_room'
+    'apps.game_room',
+    'apps.questions_app'
 ]
 
 MIDDLEWARE = [
@@ -106,16 +107,28 @@ if DEBUG:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+                    'django.contrib.auth.password_validation.'
+                    'UserAttributeSimilarityValidator'
+                    )
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+                    'django.contrib.auth.password_validation'
+                    '.MinimumLengthValidator'
+                    )
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+                    'django.contrib.auth.password_validation'
+                    '.CommonPasswordValidator'
+                    )
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+                    'django.contrib.auth.password_validation'
+                    '.NumericPasswordValidator'
+                    )
     },
 ]
 
@@ -147,6 +160,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'game_room.CustomUser'
+SITE_ID = 1
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

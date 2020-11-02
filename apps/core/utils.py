@@ -31,5 +31,7 @@ def generate_unique_slug(word):
 
 def generate_unique_invite_link(slug):
 
-    invite_link = f'https://pnl-ng.netlify.app/join-room?room_slug={slug}'
+    invite_link = f'http://localhost:8080/join-room?room_slug={slug}'
     return invite_link
+
+# https://pnl-ng.netlify.app/

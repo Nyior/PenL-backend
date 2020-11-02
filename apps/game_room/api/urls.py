@@ -25,7 +25,7 @@ urlpatterns = [
         ),
 
     path(
-         "room/<slug:slug>/delete",
+         "host/<int:host_id>/room/<slug:room_slug>/",
          RoomDeleteAPIView.as_view(),
          name="circle-delete"
          ),

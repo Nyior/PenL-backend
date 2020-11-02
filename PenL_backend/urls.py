@@ -19,10 +19,15 @@ from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title="PenL API")
 
+admin.site.site_header = "PNL ADMIN"
+admin.site.site_title = "PNL Admin Portal"
+admin.site.index_title = "Welcome to PNL Portal"
+
 urlpatterns = [
     path('', schema_view),
     path('admin/', admin.site.urls),
     path('api-auth', include("rest_framework.urls")),
     path('api/v1/', include("apps.game_room.api.urls")),
+    path('api/v1/', include("apps.questions_app.api.urls")),
     path('docs/', schema_view)
 ]

@@ -127,14 +127,14 @@ class RoomDetailAPIView(generics.RetrieveAPIView):
 
 class RoomDeleteAPIView(APIView):
 
-    def delete(self, request, room_slug):
+    def delete(self, request, host_id, room_slug):
 
         """this endpoint allows room hosts to end game session"""
 
         room = get_object_or_404(Room, slug=room_slug)
-        request_user = request.user
+        host = get_object_or_404(CustomUser, id=host_id)
 
-        if request_user == room.super_moderator:
+        if host == room.host:
 
             room.delete()
 
