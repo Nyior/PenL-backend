@@ -10,11 +10,11 @@ https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/
 import os
 import socketio
 
-from apps.game_room.api.views import sio
-
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PenL_backend.settings')
+
+from apps.game_room.api.views import sio
 
 django_app = get_wsgi_application()
 application = socketio.WSGIApp(sio, django_app)
